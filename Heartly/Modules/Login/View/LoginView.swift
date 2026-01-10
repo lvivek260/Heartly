@@ -9,24 +9,30 @@ import SwiftUI
 
 struct LoginView: View {
     @State private var animateText = false
+    @State private var showDetail = false
 
     var body: some View {
-        ZStack {
-            LoginBackgroundView()
-            ScrollView {
-                VStack {
-                    bannarView
-                    titleView
-                    Spacer().frame(height: 70)
-                    
-                    VStack(spacing: 16) {
-                        googleBtnView
-                        facebookBtnView
-                        useMobileNumberBtn
-                        signUpView
+        NavigationStack {
+            ZStack {
+                LoginBackgroundView()
+                ScrollView {
+                    VStack {
+                        bannarView
+                        titleView
+                        Spacer().frame(height: 70)
+                        
+                        VStack(spacing: 16) {
+                            googleBtnView
+                            facebookBtnView
+                            useMobileNumberBtn
+                            signUpView
+                        }
+                        .padding(.horizontal, 28)
                     }
-                    .padding(.horizontal, 28)
                 }
+            }
+            .navigationDestination(isPresented: $showDetail) {
+                TabBarContanerView()
             }
         }
     }
@@ -63,14 +69,18 @@ struct LoginView: View {
         FillButtonWithIcon(
             title: LoginConstants.continuewithGoogle,
             backgroundColor: Color(hex: "#4E229C"), icon: .init(.iconGoogle),
-            action: {})
+            action: {
+                showDetail = true
+            })
     }
     
     var facebookBtnView: some View {
         FillButtonWithIcon(
             title: LoginConstants.continuewithFacebook,
             backgroundColor: Color(hex: "#1877F2"), icon: .init(.iconFacebook),
-            action: {})
+            action: {
+                showDetail = true
+            })
     }
     
     var useMobileNumberBtn: some View {
@@ -78,7 +88,7 @@ struct LoginView: View {
             title: LoginConstants.useMobileNumber,
             backgroundColor: Color(hex: "#4B164C")
         ) {
-            print(#function)
+            showDetail = true
         }
     }
 }
