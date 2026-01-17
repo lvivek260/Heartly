@@ -24,10 +24,11 @@ struct TabBarView: View {
                 Spacer()
             }
         }
+       
         .padding(.horizontal, 12)
         .padding(.vertical, 10)
         .frame(height: barHeight)
-        .background(Color.white)
+        .background(.regularMaterial)
         .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
         .overlay(outerBorder)
         .overlay(innerBorder)
@@ -42,7 +43,7 @@ struct TabBarView: View {
 
     private var innerBorder: some View {
         RoundedRectangle(cornerRadius: cornerRadius - 4)
-            .stroke(Color.white, lineWidth: 2)
+            .stroke(.thickMaterial, lineWidth: 2)
             .padding(2)
     }
 
@@ -77,4 +78,8 @@ struct TabBarView: View {
             .frame(width: 44, height: 44)
         }
     }
+}
+
+#Preview {
+    TabBarContanerView()
 }
